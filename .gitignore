@@ -1,0 +1,29 @@
+
+# Delta Air Lines Project
+
+# Exclude large datasets
+*.csv
+*.xlsx
+*.zip
+*.parquet
+
+# Exclude Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Exclude Python temporary files
+__pycache__/
+*.pyc
+.venv/
+
+# Exclude credentials
+.env
+.env.*
+*.key
+*.pem
+
+# Exclude large model files
+*.pkl
+*.joblib
+
+# Exclude Mac system files
+.DS_Store
