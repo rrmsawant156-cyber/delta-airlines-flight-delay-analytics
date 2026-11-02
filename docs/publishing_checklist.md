@@ -6,6 +6,12 @@
 - [x] Add separately labelled 2024 sequential-delay results and financial scenarios.
 - [x] Make assumptions, units, break-even thresholds and absence of realised savings explicit.
 - [x] Document the current gap between updated results and repository-executable code.
+- [x] Attribute the academic project to Adelaide University while avoiding a false institutional endorsement claim.
+- [x] Link the official BTS on-time and financial Schedule P-5.2 sources and distinguish accounting benchmarks from assumed costs.
+- [x] Explicitly describe time-critical human decision support and operational approval boundaries.
+- [x] Inspect the standalone app source and document the missing financial mode.
+- [ ] Implement cost-aware MILP as a separate opt-in application feature; verify it against the cleaned notebook and reference inputs.
+- [ ] Run automated unit/integration tests and capture machine-verifiable results before describing the app as financially integrated.
 - [ ] Add the *final reviewed* assessment report (PDF preferred) under `reports/`; check author names, grades/comments, student identifiers and other private information before publishing.
 - [ ] Add the approved 10-minute stakeholder presentation under `presentations/`.
 - [ ] Copy approved generated outputs from the local `delta_final_assessment_results` directory into suitable `results/` and `figures/` folders. Note: the repository currently ignores `*.csv`, so either adjust `.gitignore` carefully for curated small results or commit reviewed CSVs explicitly.
