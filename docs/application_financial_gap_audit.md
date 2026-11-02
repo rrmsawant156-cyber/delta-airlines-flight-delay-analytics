@@ -1,6 +1,8 @@
-# Standalone application audit — financial integration gap
+# Standalone application audit — financial integration progress
 
-**Review date:** 2 November 2026  
+**Review date:** 2 November 2026
+
+**Update (draft branch):** An opt-in `financial` mode has since been added to `src/app.py` using `src/financial.py`; deterministic test cases are now supplied in `tests/test_financial.py`. The implementation remains **unverified against the full ATL 2024 reference input** and is **not operationally deployable**. Sections below describe the original code gap and required parity tests, not the current absence of all financial code.  
 **Code reviewed:** `src/app.py`, `src/recovery.py`, `src/safety.py`, `src/prediction.py`, plus repository usage documentation.  
 **Method:** GitHub source-level inspection only. This is **not** a successful end-to-end runtime test, nor an independent replication of the later Jupyter financial results.
 
@@ -12,7 +14,7 @@
 - The current CLI summaries report eligible blocks, candidate swaps, selected swaps, forecast baseline, and **predicted proxy improvement**.
 - The safety module applies an operational review gate. Its flags do **not** establish full dispatch safety or operational authorisation.
 
-## Financial capabilities missing from the committed standalone app
+## Original financial gaps; status following draft extension
 
 1. No financial-mode CLI option or scenario configuration for `alpha`, marginal delay-minute cost, and incremental swap cost.
 2. No objective coefficients based on `Predicted Benefit × alpha × delay_cost − swap_cost`.
@@ -24,7 +26,7 @@
 
 ## Implication
 
-**The updated financial analysis is available as documented research results, not as an implemented feature of the current standalone application.** The app must not be described as a proven, financially integrated operational decision-support tool.
+**The updated financial analysis is documented and an optional financial scenario mode has now been coded on the draft branch.** Full calculation parity against the original 19-candidate ATL input has not yet been independently established. The app must not be described as a proven or operationally validated financial decision-support system.
 
 ## Proposed extension without disrupting the working app
 
@@ -57,4 +59,4 @@ Output: original 8-swap benchmark valued under each financial scenario; financia
 
 ## Release status
 
-**Not ready to claim financial-app parity.** The cleaned notebook, input fixtures, local execution environment and tests are still needed. The present audit is source inspection and a concrete acceptance plan.
+**Implementation added, but not ready to claim financial-app parity.** Source review and deterministic tests have been prepared; executing those tests and reproducing the actual 19-candidate notebook input remain outstanding. The cleaned, path-configurable notebook was generated separately for user download and has not yet been committed to the repository.
