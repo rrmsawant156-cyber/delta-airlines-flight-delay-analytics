@@ -20,6 +20,19 @@ The project applies business analytics techniques to:
 The project is an academic case study and is not affiliated
 with or endorsed by Delta Air Lines.
 
+## November 2026 assessment update
+
+The latest research adds a **2024 sequential-flight delay comparison** and a **financially informed aircraft-swap MILP**. These are documented in [Sequential Delay Results](results/sequential_delay_2024.md), [Financial Optimisation Results](results/financial_optimisation.md), and the [Assessment Update](docs/assessment_2026_update.md).
+
+**Publication status:** The existing notebook and `src/` application have intentionally not been replaced while the final notebook is being cleaned. Some new findings were generated in a later local Jupyter workflow and **cannot yet be reproduced end-to-end solely from this GitHub checkout**. See the [publication and reproduction checklist](docs/publishing_checklist.md). All dollar figures are **ordinary USD** and **hypothetical scenario values, not verified savings**.
+
+### Headline new findings
+
+- In 696,776 eligible consecutive-flight observations from 2024, **69.46%** of next flights departed 15+ minutes late after a preceding arrival at least 15 minutes late, compared with **8.62%** otherwise. This comparison is observational and involves *two groups of sequential flights*.
+- The forecast-assisted original MILP chose **8 swaps** with **81.82 minutes of predicted turnaround-shortfall-proxy improvement** (35.15% of the 232.78-minute forecast baseline). This is *not observed departure-delay savings*.
+- Cost-aware optimisation chose **0 / 2 / 7** swaps under conservative / base / optimistic financial assumptions, with modelled net values of **$0 / +$480.90 / +$4,513.94**.
+- Of **19** candidate exchanges, **11** passed limited retrospective screening, but none of those passing candidates showed positive observed shortfall-proxy improvement. The alternative swaps were not actually operated.
+
 ## Analytical Framework
 
 The project combines:
@@ -115,14 +128,21 @@ historical feasibility.
 No positive-benefit exchanges were selected at margins
 of 30 minutes or greater in this experiment.
 
+## Financial scenarios and responsible interpretation
+
+The financial extension uses an assumed fraction of predicted shortfall improvement converted into avoided delay minutes, valued at an assumed marginal delay-minute cost, minus an assumed **$500 per swap**. Conservative / base / optimistic scenarios use **25% × $50/min**, **50% × $75/min**, and **100% × $100/min**, respectively. The reported BTS 2024 Delta domestic average accounting expense benchmark (~$118.47 per airborne minute) is **not** a measured marginal ground-delay cost. See [financial methods, comparisons and limitations](results/financial_optimisation.md).
+
 ## Repository Structure
 
 - `notebooks/` — Jupyter Notebook containing project analysis.
 - `README.md` — Project overview, methodology and findings.
+- `results/sequential_delay_2024.md` — Latest Step 44 descriptive comparison.
+- `results/financial_optimisation.md` — Cost-aware MILP scenarios and historical checks.
+- `docs/assessment_2026_update.md` — Latest assessment addendum and code status.
+- `docs/publishing_checklist.md` — Remaining report, figure, notebook and QA tasks.
 - `.gitignore` — Exclusion rules for local datasets and files.
 
-Additional documentation and visualisations may be added
-as the repository develops.
+The latest final report, local results CSVs and chart image exports are **not yet uploaded**. We will add reviewed artifacts once their final versions are approved and available, without publishing student-identifying or sensitive information.
 
 ## Reproducibility
 
@@ -131,6 +151,8 @@ repository.
 
 The notebook uses local dataset paths and requires access
 to the corresponding input files to reproduce the analysis.
+
+**Important:** The presently committed notebook predates the final Step 44 and financial updates. The results addenda preserve the recorded findings, but they are not a claim that the current checked-in notebook can regenerate all newer outputs. Review the [reproducibility guide](docs/reproducibility.md) and [publication checklist](docs/publishing_checklist.md) before attempting independent validation.
 
 The project uses Python, pandas, NumPy, scikit-learn and
 SciPy, among other analysis libraries.
