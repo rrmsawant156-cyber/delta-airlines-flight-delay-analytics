@@ -18,6 +18,10 @@
 - [ ] Verify that the original 2024 Step 44 figure matches the result table.
 - [ ] Decide whether the repository should remain private. It is **currently private**.
 
+## Cleaned notebook received (2 November 2026)
+
+A cleaned notebook was supplied for review: `Delta Disruption Analytics Final code file.ipynb` (145 cells, saved run output, Steps 18–44 including financial analysis and sequential-delay comparison). Its JSON structure parsed successfully and no saved Python error outputs were found. **This is not a clean-kernel execution test.** The source still contains hard-coded local macOS file paths and requires the original BTS data files. A GitHub-ready copy retaining identical cell source but removing saved output payloads has been prepared locally; it has **not yet replaced** the checked-in GitHub notebook. The remaining independent code execution, dependency, paths, input-data and result comparisons below are still required.
+
 ## Notebook cleanup stage (after user finalises code)
 
 - [ ] Remove unnecessary cells and outputs *without changing logic*.
