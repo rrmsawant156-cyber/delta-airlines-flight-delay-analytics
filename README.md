@@ -1,8 +1,16 @@
 
 # Delta Air Lines | Flight Delay Analytics & Aircraft Recovery
 
-### BUSI6029 — Business Analytics Project 1
-**Academic Project | 2026**
+### Adelaide University — Business Analytics academic project (2026)
+**BUSI6029 | Student research / independent academic work**
+
+The study originated during the University of Adelaide-to-Adelaide University transition. Adelaide University commenced operation in January 2026. Institutional affiliation identifies the educational setting only: **this repository is not an official, sponsored or endorsed Adelaide University or Delta Air Lines project**. Course labelling should be checked against the final assessment brief.
+
+## Intended business value: timely, human-reviewed operational decisions
+
+This is a research prototype of a **time-sensitive decision-support tool for airline operations controllers, dispatch teams and relevant financial/operational stakeholders**. Its proposed use is to help evaluate, at critical moments of aircraft disruption, whether maintaining current assignments or considering a reciprocal aircraft exchange is more defensible under forecast information, scheduling constraints and economic assumptions. It does **not** replace qualified operational staff or authorise changes to actual aircraft assignments.
+
+**Code status:** The currently checked-in standalone application implements delay prediction, shortfall-based exchange selection and a human-review gate. The **new financial scenario objective is documented but not yet implemented in the app**. See [source-code audit](docs/application_financial_gap_audit.md) and [proposed stakeholder decision workflow](docs/decision_support_use_case.md).
 
 ## Project Overview
 
@@ -45,6 +53,15 @@ The project combines:
    and feasibility checks.
 5. Change Management — proposed adoption of analytics-based
    decision support in airline operations.
+
+## Source data and credibility
+
+The project uses official U.S. Department of Transportation **Bureau of Transportation Statistics (BTS)** data:
+
+- [Reporting Carrier On-Time Performance](https://www.transtats.bts.gov/TableInfo.asp?QO_fu146_anzr=b0-gvzr&gnoyr_VQ=FGJ) for Delta Air Lines flight-level and aircraft rotation records, 2023–2025.
+- [Air Carrier Financial — Schedule P-5.2](https://www.transtats.bts.gov/TableInfo.asp?QO_fu146_anzr=Nv4+Pn44vr4+Sv0n0pvny&gnoyr_VQ=FMK) for the contextual Delta 2024 domestic aircraft operating-expense benchmark.
+
+The BTS airborne-expense calculation is **not** empirical marginal ground-delay cost; the $500 swap charge and $50/$75/$100 delay valuations are assumptions. Full provenance, reporting units, access links and cautions: [data sources and citations](docs/data_sources_and_citations.md).
 
 ## Data and Methodology
 
@@ -140,6 +157,9 @@ The financial extension uses an assumed fraction of predicted shortfall improvem
 - `results/financial_optimisation.md` — Cost-aware MILP scenarios and historical checks.
 - `docs/assessment_2026_update.md` — Latest assessment addendum and code status.
 - `docs/publishing_checklist.md` — Remaining report, figure, notebook and QA tasks.
+- `docs/data_sources_and_citations.md` — BTS source citations, academic attribution, reporting units.
+- `docs/decision_support_use_case.md` — Time-critical human decision-support workflow and stakeholder controls.
+- `docs/application_financial_gap_audit.md` — Current app functionality, missing financial mode and acceptance criteria.
 - `.gitignore` — Exclusion rules for local datasets and files.
 
 The latest final report, local results CSVs and chart image exports are **not yet uploaded**. We will add reviewed artifacts once their final versions are approved and available, without publishing student-identifying or sensitive information.
