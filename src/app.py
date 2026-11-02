@@ -22,6 +22,7 @@ import pandas as pd
 
 from prediction import load_prediction_model, predict_flight_delays
 from recovery import recommend_aircraft_swaps
+from financial import financial_reoptimisation
 from safety import (
     assess_swap_operational_readiness,
     summarise_safety_review,
@@ -308,6 +309,10 @@ def main():
     recover_parser.add_argument("--blocks", required=True)
     recover_parser.add_argument("--output-dir", required=True)
 
+    financial_parser = subparsers.add_parser("financial")
+    financial_parser.add_argument("--candidates", required=True)
+    financial_parser.add_argument("--output-dir", required=True)
+
     integrated_parser = subparsers.add_parser("integrated")
     integrated_parser.add_argument("--incoming", required=True)
     integrated_parser.add_argument("--blocks", required=True)
@@ -326,6 +331,21 @@ def main():
     elif args.mode == "recover":
         blocks = load_csv(args.blocks)
         run_recovery(blocks, args.output_dir)
+
+    elif args.mode == "financial":
+        candidates = load_csv(args.candidates)
+        financial_summary, selected, scored = financial_reoptimisation(candidates)
+        out = Path(args.output_dir)
+        out.mkdir(parents=True, exist_ok=True)
+        save_csv(financial_summary, out / "financial_scenario_summary.csv")
+        save_csv(scored, out / "financial_candidate_values.csv")
+        for scenario_name, chosen in selected.items():
+            save_csv(
+                chosen,
+                out / ("financial_selected_" + scenario_name.lower() + ".csv"),
+            )
+        print(financial_summary.to_string(index=False))
+        print("SCENARIO ESTIMATES ONLY. NO REALISED SAVINGS OR DISPATCH AUTHORISATION.")
 
     elif args.mode == "integrated":
         blocks = load_csv(args.blocks)
