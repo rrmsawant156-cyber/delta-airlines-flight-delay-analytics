@@ -10,8 +10,10 @@
 - [x] Link the official BTS on-time and financial Schedule P-5.2 sources and distinguish accounting benchmarks from assumed costs.
 - [x] Explicitly describe time-critical human decision support and operational approval boundaries.
 - [x] Inspect the standalone app source and document the missing financial mode.
-- [ ] Implement cost-aware MILP as a separate opt-in application feature; verify it against the cleaned notebook and reference inputs.
-- [ ] Run automated unit/integration tests and capture machine-verifiable results before describing the app as financially integrated.
+- [x] Implement cost-aware MILP as a separate opt-in application feature on the **draft branch** (`src/financial.py`, `src/app.py financial`).
+- [ ] Validate the financial CLI against the final cleaned notebook and original 19-candidate reference inputs.
+- [x] Add deterministic financial objective, no-swap and exclusivity unit tests to `tests/test_financial.py`.
+- [ ] **Execute** unit/integration tests and capture machine-verifiable results before describing the app as financially validated.
 - [ ] Add the *final reviewed* assessment report (PDF preferred) under `reports/`; check author names, grades/comments, student identifiers and other private information before publishing.
 - [ ] Add the approved 10-minute stakeholder presentation under `presentations/`.
 - [ ] Copy approved generated outputs from the local `delta_final_assessment_results` directory into suitable `results/` and `figures/` folders. Note: the repository currently ignores `*.csv`, so either adjust `.gitignore` carefully for curated small results or commit reviewed CSVs explicitly.
@@ -31,7 +33,7 @@ A cleaned notebook was supplied for review: `Delta Disruption Analytics Final co
 - [ ] Reconcile exact report figures with fresh execution.
 - [ ] Verify final notebook and CLI scripts agree where they overlap. The CLI prototype must not be represented as implementing all analyses automatically unless demonstrated.
 - [ ] Document run time, machine/software environment, and accessible official BTS input sources.
-- [ ] Replace `notebooks/BUSI6029_Assessment2_Delta.ipynb` only after these tests.
+- [ ] Replace `notebooks/BUSI6029_Assessment2_Delta.ipynb` only after these tests. A separate corrected notebook has been prepared with fixed Step 22 empty-selection key handling and configurable paths (`DELTA_DATA_DIR`, `DELTA_FINANCIAL_CSV`, `DELTA_RESULTS_DIR`); the output-cleared copy needs a clean-kernel run before replacement.
 
 ## Suggested safe data policy
 
