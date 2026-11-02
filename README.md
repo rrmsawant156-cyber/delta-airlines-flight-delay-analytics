@@ -10,7 +10,7 @@ The study originated during the University of Adelaide-to-Adelaide University tr
 
 This is a research prototype of a **time-sensitive decision-support tool for airline operations controllers, dispatch teams and relevant financial/operational stakeholders**. Its proposed use is to help evaluate, at critical moments of aircraft disruption, whether maintaining current assignments or considering a reciprocal aircraft exchange is more defensible under forecast information, scheduling constraints and economic assumptions. It does **not** replace qualified operational staff or authorise changes to actual aircraft assignments.
 
-**Code status:** The currently checked-in standalone application implements delay prediction, shortfall-based exchange selection and a human-review gate. The **new financial scenario objective is documented but not yet implemented in the app**. See [source-code audit](docs/application_financial_gap_audit.md) and [proposed stakeholder decision workflow](docs/decision_support_use_case.md).
+**Code status:** The currently checked-in standalone application implements delay prediction, shortfall-based exchange selection and a human-review gate. A **new opt-in financial CLI mode** is now implemented on the **draft update branch**, but has not yet passed full end-to-end replication against the final notebook and data. See [source-code audit](docs/application_financial_gap_audit.md) and [proposed stakeholder decision workflow](docs/decision_support_use_case.md).
 
 ## Project Overview
 
@@ -144,6 +144,20 @@ historical feasibility.
 
 No positive-benefit exchanges were selected at margins
 of 30 minutes or greater in this experiment.
+
+## Financial decision-support prototype (draft branch)
+
+The separate opt-in financial extension consumes an **already screened candidate CSV** and produces scenario-specific, non-conflicting mathematical aircraft-exchange suggestions and auditable monetary values:
+
+```bash
+python src/app.py financial \\
+  --candidates "/path/to/screened_swap_candidates.csv" \\
+  --output-dir "/path/to/financial_results"
+```
+
+The candidate CSV requires `Tail A`, `Tail B`, and `Predicted Benefit` columns. The financial extension does **not** generate new forecasts or verify the full scheduling, crew, maintenance, equipment or gate constraints. Use only screened, decision-time-valid candidates. All proposed exchanges remain **REVIEW_REQUIRED** and are not dispatch authorised.
+
+Run deterministic logic tests (requires pytest): `python -m pytest tests/test_financial.py -q`. These tests are included, but their execution and parity with ATL 2024 **have not yet been independently certified**. Do not claim the application reproduces the full assessment until its candidate data and execution environment have been verified.
 
 ## Financial scenarios and responsible interpretation
 
